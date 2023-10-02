@@ -33,6 +33,13 @@ public partial class Rocket : Area2D
 	{
 		QueueFree();
 	}
-	
+
+	private void OnAreaEntered(Area2D area2D)
+	{
+		//area2D.QueueFree();
+		if (area2D is not Enemy areaInstance) return;
+		QueueFree();
+		areaInstance.Die();
+	}
 	
 }

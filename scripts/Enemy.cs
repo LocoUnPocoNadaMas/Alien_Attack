@@ -23,4 +23,9 @@ public partial class Enemy : Area2D
         global.X -= _speed * (float)delta;
         GlobalPosition = global;
     }
+
+    public void Die()
+    {
+        QueueFree();
+    }
 }
