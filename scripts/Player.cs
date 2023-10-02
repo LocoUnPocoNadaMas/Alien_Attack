@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace AlienAttack.scripts;
@@ -8,9 +9,31 @@ public partial class Player : CharacterBody2D
 
     private static readonly Vector2 Min = new Vector2(0,10);
     private static readonly Vector2 Max = new Vector2(1260,710);
-    
 
-    //private const float Speed = ;
+    //[Export] private Area2D _rocketScene = new Area2D();
+    [Export] private Node _container;
+    
+    [Export] private PackedScene _rocketScene;
+    
+    public override void _Ready()
+    {
+        try
+        {
+            _container = GetNode<Node>("RocketContainer");
+            _rocketScene = ResourceLoader.Load<PackedScene>("res://prefabs/rocket.tscn");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public override void _Process(double delta)
+    {
+        if(Input.IsActionJustPressed("ui_select"))
+            Shoot();
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -68,5 +91,18 @@ public partial class Player : CharacterBody2D
     Velocity = velocity;
     MoveAndSlide();
     */
+    }
+
+    private void Shoot()
+    {
+        if (_rocketScene == null) return;
+        //AddChild(_rocketScene);
+        var rocketInstance = _rocketScene.Instantiate<Area2D>();
+        _container.AddChild(rocketInstance);
+        rocketInstance.GlobalPosition = GlobalPosition;
+        
+        var aux = rocketInstance.GlobalPosition;
+        aux.X += 80;
+        rocketInstance.GlobalPosition = aux;
     }
 }
