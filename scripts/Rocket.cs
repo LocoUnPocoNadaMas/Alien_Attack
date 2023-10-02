@@ -5,7 +5,7 @@ namespace AlienAttack.scripts;
 public partial class Rocket : Area2D
 {
 	[ExportGroup("My Properties")]
-	[Export] private float _speed = 6f;
+	[Export] private float _speed = 300f;
 
 	private VisibleOnScreenNotifier2D _visibleNotifier;
 	
@@ -25,7 +25,7 @@ public partial class Rocket : Area2D
 	public override void _PhysicsProcess(double delta)
 	{
 		var global = GlobalPosition;
-		global.X += _speed;
+		global.X += _speed * (float)delta;
 		GlobalPosition = global;
 	}
 

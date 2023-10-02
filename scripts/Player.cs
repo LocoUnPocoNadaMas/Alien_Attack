@@ -5,7 +5,7 @@ namespace AlienAttack.scripts;
 
 public partial class Player : CharacterBody2D
 {
-    private const float Speed = 300.0f;
+    [Export] private const float Speed = 30000.0f;
 
     private static readonly Vector2 Min = new Vector2(0,10);
     private static readonly Vector2 Max = new Vector2(1260,710);
@@ -46,9 +46,9 @@ public partial class Player : CharacterBody2D
         if (direction != Vector2.Zero)
         {
             //if(GlobalPosition.X is > 0 and < 1280)
-            velocity.X = direction.X * Speed;
+            velocity.X = direction.X * Speed * (float)delta;
             //if(GlobalPosition.Y is > 0 and < 720)
-            velocity.Y = direction.Y * Speed;
+            velocity.Y = direction.Y * Speed * (float)delta;
 
             /*
         if (GlobalPosition.X < 0)
@@ -63,9 +63,6 @@ public partial class Player : CharacterBody2D
             //GlobalPosition = globalPosition;
             
             GlobalPosition = globalPosition.Clamp(Min, Max);
-            
-
-            GD.Print(GlobalPosition);
         }
         else
         {
