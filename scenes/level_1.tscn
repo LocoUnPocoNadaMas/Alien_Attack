@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dknsns0oe5ks4" path="res://textures/bg.png" id="1_qvnto"]
 [ext_resource type="PackedScene" uid="uid://cxb6eamq7ruv7" path="res://prefabs/player.tscn" id="2_7t5ch"]
-[ext_resource type="PackedScene" uid="uid://dyutn2b2i3r2d" path="res://prefabs/enemy.tscn" id="3_ytu4i"]
+[ext_resource type="PackedScene" uid="uid://b85p0akjovpxg" path="res://prefabs/enemy_spawner.tscn" id="3_x3a4d"]
 
 [node name="Level 1" type="Node2D"]
 
@@ -13,7 +13,8 @@ texture = ExtResource("1_qvnto")
 stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_7t5ch")]
-position = Vector2(640, 360)
+position = Vector2(100, 360)
 
-[node name="Enemy" parent="." instance=ExtResource("3_ytu4i")]
-position = Vector2(970, 367)
+[node name="EnemySpawner" parent="." instance=ExtResource("3_x3a4d")]
+
+[editable path="EnemySpawner"]
