@@ -13,6 +13,9 @@ public partial class Level1 : Node2D
 	private Hud _hud;
 	private CanvasLayer _ui;
 	private PackedScene _scrGameOver;
+	private AudioStreamPlayer _enemyDamageAudio;
+	private AudioStreamPlayer _audioStreamPlayer;
+	
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -31,6 +34,9 @@ public partial class Level1 : Node2D
 
 		//ResourceLoader.Load<PackedScene>("res://prefabs/rocket.tscn");
 		_scrGameOver = ResourceLoader.Load<PackedScene>("res://prefabs/scrgameover.tscn");
+
+		_enemyDamageAudio = GetNode<AudioStreamPlayer>("EnemyHitSound");
+		_audioStreamPlayer = GetNode<AudioStreamPlayer>("AudioTakeDamage");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,6 +52,7 @@ public partial class Level1 : Node2D
 
 	private void OnPlayerTookDamage()
 	{
+		_audioStreamPlayer.Play(0);
 		_lives -= 1;
 		if (_lives == 0)
 		{
@@ -73,6 +80,7 @@ public partial class Level1 : Node2D
 
 	private void OnEnemyDied()
 	{
+		_enemyDamageAudio.Play(0);
 		//GD.Print(_score += 100);
 		_score += 100;
 		_hud.SetScoreLabel(_score);

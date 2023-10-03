@@ -9,6 +9,8 @@ public partial class Player : CharacterBody2D
 
     private static readonly Vector2 Min = new Vector2(0,10);
     private static readonly Vector2 Max = new Vector2(1260,710);
+    private AudioStreamPlayer _audioStreamPlayer;
+    private AudioStreamPlayer _rocketAudio;
 
     //[Export] private Area2D _rocketScene = new Area2D();
     [Export] private Node _container;
@@ -23,6 +25,7 @@ public partial class Player : CharacterBody2D
         {
             _container = GetNode<Node>("RocketContainer");
             _rocketScene = ResourceLoader.Load<PackedScene>("res://prefabs/rocket.tscn");
+            _rocketAudio = GetNode<AudioStreamPlayer>("RocketShoot");
         }
         catch (Exception e)
         {
@@ -96,6 +99,7 @@ public partial class Player : CharacterBody2D
     {
         if (_rocketScene == null) return;
         //AddChild(_rocketScene);
+        _rocketAudio.Play(0);
         var rocketInstance = _rocketScene.Instantiate<Area2D>();
         _container.AddChild(rocketInstance);
         rocketInstance.GlobalPosition = GlobalPosition;
@@ -107,6 +111,7 @@ public partial class Player : CharacterBody2D
 
     public void TakeDamage()
     {
+        
         EmitSignal(SignalName.TookDamage);
     }
 
