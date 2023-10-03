@@ -53,7 +53,7 @@ public partial class Level1 : Node2D
 			_player.Die();
 
 			var timer = GetTree().CreateTimer(1.5f);
-			timer.Timeout += () =>
+			//timer.Timeout += () =>
 			{
 				var gameOverIns = _scrGameOver.Instantiate<ScrGameOver>();
 

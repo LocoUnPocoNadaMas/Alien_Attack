@@ -35,8 +35,8 @@ public partial class Enemy : Area2D
     private void OnBodyEntered(Node2D body)
     {
         if (body is not Player bodyInstance) return;
-        bodyInstance.TakeDamage();
         Die();
+        bodyInstance.TakeDamage();
     }
     
 }
