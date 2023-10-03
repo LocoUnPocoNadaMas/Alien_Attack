@@ -6,6 +6,8 @@ public partial class Enemy : Area2D
 {
     [ExportGroup("My Properties")] [Export]
     private float _speed = 200f;
+    
+    [Signal] public delegate void DiedEventHandler();
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -26,6 +28,7 @@ public partial class Enemy : Area2D
 
     public void Die()
     {
+        EmitSignal(SignalName.Died);
         QueueFree();
     }
 

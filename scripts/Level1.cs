@@ -8,11 +8,16 @@ public partial class Level1 : Node2D
 	private Player _player;
 	private int _score = 0;
 
+	private EnemySpawner _enemySpawner;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_player = GetNode<Player>("Player");
 		_player.TookDamage += OnPlayerTookDamage;
+
+		//_enemySpawner = GetNode<EnemySpawner>("EnemySpawner");
+		//_enemySpawner.EnemySpawned += OnEnemySpawnerEnemySpawned;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,12 +36,22 @@ public partial class Level1 : Node2D
 		_lives -= 1;
 		if (_lives == 0)
 		{
+			GD.Print("Game Over");
 			_player.Die();
-			GD.Print("remaining lives: "+_lives);
 		}
 		else
-			GD.Print("Game Over");
+			GD.Print("remaining lives: "+_lives);
 	}
-	
-	
+
+	private void OnEnemySpawnerEnemySpawned(Enemy enemy)
+	{
+		enemy.Died += OnEnemyDied;
+		AddChild(enemy);
+	}
+
+	private void OnEnemyDied()
+	{
+		GD.Print(_score += 100);
+	}
+
 }

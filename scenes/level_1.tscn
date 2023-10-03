@@ -28,6 +28,7 @@ position = Vector2(100, 360)
 position = Vector2(-200, 360)
 shape = SubResource("RectangleShape2D_3csg7")
 
+[connection signal="EnemySpawned" from="EnemySpawner" to="." method="OnEnemySpawnerEnemySpawned"]
 [connection signal="area_entered" from="DeathZone" to="." method="OnDeathZoneAreaEntered"]
 
 [editable path="EnemySpawner"]
