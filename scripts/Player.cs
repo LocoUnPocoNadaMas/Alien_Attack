@@ -15,6 +15,8 @@ public partial class Player : CharacterBody2D
     
     [Export] private PackedScene _rocketScene;
     
+    [Signal] public delegate void TookDamageEventHandler();
+    
     public override void _Ready()
     {
         try
@@ -101,5 +103,15 @@ public partial class Player : CharacterBody2D
         var aux = rocketInstance.GlobalPosition;
         aux.X += 80;
         rocketInstance.GlobalPosition = aux;
+    }
+
+    public void TakeDamage()
+    {
+        EmitSignal(SignalName.TookDamage);
+    }
+
+    public void Die()
+    {
+        QueueFree();
     }
 }
