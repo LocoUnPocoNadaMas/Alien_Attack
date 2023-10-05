@@ -1,2 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
+
+# New Godot release backup
+Alien Attack.csproj.old
