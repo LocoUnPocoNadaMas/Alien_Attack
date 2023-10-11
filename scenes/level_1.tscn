@@ -43,4 +43,5 @@ mix_target = 1
 stream = ExtResource("7_gs5nn")
 
 [connection signal="EnemySpawned" from="EnemySpawner" to="." method="OnEnemySpawnerEnemySpawned"]
+[connection signal="PathEnemy" from="EnemySpawner" to="." method="OnEnemySpawnerPathEnemy"]
 [connection signal="area_entered" from="DeathZone" to="." method="OnDeathZoneAreaEntered"]

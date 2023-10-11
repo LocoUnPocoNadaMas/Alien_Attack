@@ -7,6 +7,9 @@ public partial class PathEnemy : Path2D
 	private PathFollow2D _pathFollow2D;
 
 	private Enemy _enemy;
+
+	public Enemy Enemy => _enemy;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

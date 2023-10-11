@@ -86,4 +86,10 @@ public partial class Level1 : Node2D
 		_hud.SetScoreLabel(_score);
 	}
 
+	private void OnEnemySpawnerPathEnemy(PathEnemy pathEnemy)
+	{
+		AddChild(pathEnemy);
+		pathEnemy.Enemy.Died += OnEnemyDied;
+	}
+
 }
